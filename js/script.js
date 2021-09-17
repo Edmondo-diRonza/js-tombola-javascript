@@ -40,7 +40,6 @@ function(){
     console.log("Numeri scartati: " + (numbers - contaNumeriGenerati));
     contatore=-1;
     var msg = new SpeechSynthesisUtterance();
-        msg.rate = 0.2;
         msg.lang ='it';        
         msg.text = "Si inizia a giocare! Per estrarre il numero successivo clicca su: chiama numero! ";
         window.speechSynthesis.speak(msg);
@@ -56,7 +55,6 @@ function(){
     if (arrayNumeri[0] === undefined) {
         console.log("Devi ancora inizia la partita!");
         var msg = new SpeechSynthesisUtterance();
-        msg.rate = 0.2;
         msg.lang ='it';        
         msg.text = "Per favore, clicca prima sul pulsante inizia la partita! ";
         window.speechSynthesis.speak(msg);
@@ -67,9 +65,9 @@ function(){
         var overlayNumber = document.getElementById("overlay-number");
         overlayNumber.innerHTML = arrayNumeri[contatore];        
         var overlayClass=document.getElementById("overlay-class");
-        var changeColor = ["orange", "red", "green", "yellow", "white"];
-        var indiceColore = Math.floor(Math.random() * 4);
-        overlayClass.style.background=changeColor[indiceColore];
+        // var changeColor = ["orange", "red", "green", "yellow", "white"];
+        // var indiceColore = Math.floor(Math.random() * 4);
+        // overlayClass.style.background=changeColor[indiceColore];
         overlayClass.classList.add("show");
         setTimeout(function(){ 
             overlayClass.classList.remove("show"); 
@@ -77,13 +75,17 @@ function(){
         var choosenNumber = document.getElementById(arrayNumeri[contatore]);
         choosenNumber.classList.add("choosen-red");
         var msg = new SpeechSynthesisUtterance();
-        msg.rate = 0.2;
         msg.lang ='it';        
         msg.text = arrayNumeri[contatore];
         window.speechSynthesis.speak(msg);
     }
     else {
-        console.log("I numeri sono terminati! Premi il pulsante nuova partita in basso!")
+        console.log("I numeri sono terminati! Premi il pulsante nuova partita in basso!");
+        var msg = new SpeechSynthesisUtterance();
+        msg.lang ='it';        
+        msg.text = "Numeri terminati! Premi il pulsante inizia la partita!";
+        window.speechSynthesis.speak(msg);
+
     }
 }
 );
