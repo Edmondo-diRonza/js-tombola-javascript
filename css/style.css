@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Lato', sans-serif;
+}
+h1 {
+    font-size: 40px;
+    color: blue;
+    font-weight: bold;
+}
+
+/* MIX  */
+.page-wrapper {
+    height: 100vh;   
+}
+main {
+    display: flex;
+    height: calc(100% - 100px);    
+}
+aside {
+    width: 300px;
+    padding: 20px 20px;
+}
+.main-content {
+    width: calc(100% - 300px);
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;
+}
+.overlay-layer {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 100px);
+    line-height: calc(100vh - 100px);    
+    z-index: 2;
+    transition: opacity 2s;    
+}
+.show {
+    opacity: 1;
+}
+.big-number {
+    font-size: 580px;           
+}
+.tabellone-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;    
+    margin: auto;
+    background-color: blue;    
+    padding: 30px 20px;
+    height: 100%;
+}
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 7px;    
+}
+.row_cartella {
+    display: flex;
+    justify-content: space-around;    
+}
+.cartella {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid #fff;
+    padding: 20px 0px;
+    border-radius: 20px;
+    width: 35%;
+    margin-bottom: 2px;
+}
+.number-item {
+    font-size: 32px;
+    font-weight: bold;
+    color: blue;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;    
+    text-align: center;
+}
+.choosen-red {
+    background-color: red;
+    color: white;
+}
+.button-footer {
+    height: 100px;
+    background-color: #444;
+    text-align: center;
+    line-height: 100px;
+}
+.btn {
+    padding: 15px 25px;
+    margin-left: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #333;
+    color: blue;
+}
+.btn:hover {
+    background-color: green;
+    color: #fff;
+}
+.button-footer {
+    z-index: 1;
+}
