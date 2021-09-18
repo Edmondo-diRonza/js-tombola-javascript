@@ -4,12 +4,14 @@ var arrayNumeri = new Array(numbers);
 var scegliNumero = document.getElementById("choose-number");
 var bottoneReset = document.getElementById("reset");
 var contatore;
+// definisco evento alla pressione del bottoner inizia la partita (reset) 
 bottoneReset.addEventListener("click",
 function(){
     // inizializzo l'array a -1 per non avere duplicati
     for (var i=0; i<numbers;i++) {
         arrayNumeri[i] = -1;
-    }    
+    }
+    // genero 90 numeri casuali e li metto nell'arrayNumeri     
     console.log("Genero " + numbers + " numeri univoci")    
     var numeriUnici = 1;
     var flagDuplicato = 0;
@@ -39,17 +41,23 @@ function(){
     console.log("Numeri random effettivi generati: " + contaNumeriGenerati);
     console.log("Numeri scartati: " + (numbers - contaNumeriGenerati));
     contatore=-1;
+    // messaggio di benvenuto 
     var msg = new SpeechSynthesisUtterance();
         msg.lang ='it';        
         msg.text = "Si inizia a giocare! Per estrarre il numero successivo clicca su: chiama numero! ";
         window.speechSynthesis.speak(msg);
-    for (var i = 0; i<numbers; i++) {
+    // rimuovo la classe choosen red che imposta il bg-red ai numeri 
+        for (var i = 0; i<numbers; i++) {
         var choosenNumber = document.getElementById(arrayNumeri[i]);
         choosenNumber.classList.remove("choosen-red");
-    }    
+    }
+    // cancello lista degli ultimi numeri estratti 
+    var lastNumbers = document.getElementById("last-numbers");
+        lastNumbers.innerHTML = "";    
 }
 );
 
+// definisco eventi alla pressione del bottone chiama numero 
 scegliNumero.addEventListener("click",
 function(){
     if (arrayNumeri[0] === undefined) {
@@ -62,18 +70,22 @@ function(){
     if (contatore<89){
         contatore++;     
         console.log("Il " + (contatore+1) + " numero estratto è " + arrayNumeri[contatore]);
+        // genero una lista degli ultimi numeri estratti 
+        var lastNumbers = document.getElementById("last-numbers");
+        lastNumbers.innerHTML+="<li>" + arrayNumeri[contatore]+ "</li>" + "<p>" + (contatore+1) + "° estratto </p>";
+        // mostro l'overlay sullo schermo 
         var overlayNumber = document.getElementById("overlay-number");
         overlayNumber.innerHTML = arrayNumeri[contatore];        
-        var overlayClass=document.getElementById("overlay-class");
-        // var changeColor = ["orange", "red", "green", "yellow", "white"];
-        // var indiceColore = Math.floor(Math.random() * 4);
-        // overlayClass.style.background=changeColor[indiceColore];
+        var overlayClass=document.getElementById("overlay-class");               
         overlayClass.classList.add("show");
+        // imposto una attesa dopo aver visualizzato il numero grande 
         setTimeout(function(){ 
             overlayClass.classList.remove("show"); 
         }, 6000);
+        // aggiungo la classe choosen-red ai numeri estratti sul tabellone 
         var choosenNumber = document.getElementById(arrayNumeri[contatore]);
         choosenNumber.classList.add("choosen-red");
+        // leggo il numero estratto 
         var msg = new SpeechSynthesisUtterance();
         msg.lang ='it';        
         msg.text = arrayNumeri[contatore];
@@ -84,8 +96,7 @@ function(){
         var msg = new SpeechSynthesisUtterance();
         msg.lang ='it';        
         msg.text = "Numeri terminati! Premi il pulsante inizia la partita!";
-        window.speechSynthesis.speak(msg);
-
+        window.speechSynthesis.speak(msg);        
     }
 }
 );
@@ -94,5 +105,23 @@ var estrazioneAutomatica = document.getElementById("auto-extract");
 estrazioneAutomatica.addEventListener("click",
 function() {
     alert("in fase di aggiornamento");    
+}
+);
+var fiveBackward = document.getElementById("five-backward");
+fiveBackward.addEventListener("click",
+function() {
+    var testoCompleto ="Ecco i cinque numeri precedenti: ";
+    for (var i = 0; i<5; i++){
+        if (contatore>=4) {
+            testoCompleto+= " " + arrayNumeri[contatore-i];            
+        }
+        else {
+            testoCompleto = "Non sono ancora stati estratti 5 numeri"
+        }                
+    }
+    var msg = new SpeechSynthesisUtterance();
+    msg.lang ='it';        
+    msg.text = testoCompleto;
+    window.speechSynthesis.speak(msg);    
 }
 );
