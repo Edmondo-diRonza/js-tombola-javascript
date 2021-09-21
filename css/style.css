@@ -49,7 +49,8 @@ aside {
     align-items: center;        
     list-style: none;
     font-size: 25px;
-    color: white;
+    color: white;    
+
 }
 .number-list li {
     display: inline-block;
@@ -61,6 +62,8 @@ aside {
     background-color: #f18b00;
     border: 2px solid #5e3700;
     margin: 1px 2px;
+    box-shadow: 1px 1px 4px #444;
+
 }
 .main-content {
     width: calc(100% - 300px);
@@ -97,7 +100,9 @@ aside {
     border: 35px solid #5e3700;
     border-radius: 100%;
     line-height: 720px;
-    background-color: white;           
+    background-color: white;
+    box-shadow: 5px 5px 100px rgb(68, 68, 68);
+           
 }
 .tabellone-container {
     display: flex;
@@ -159,6 +164,8 @@ aside {
     border-color: #3494d2;
     color: #3494d2;
     text-transform: uppercase;
+    box-shadow: 3px 3px 10px #444;
+
 }
 .btn:hover {
     background-color: #3494d2;
@@ -171,4 +178,5 @@ aside {
     margin-right: 10px;
     font-size: 30px;
     vertical-align: middle;
+    /* color: #f18b00; */
 }

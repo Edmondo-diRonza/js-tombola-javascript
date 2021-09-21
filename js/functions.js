@@ -16,8 +16,13 @@ function numberExtraction(numbers){
             arrayIndex++;                   
         }
         iterations++;           
-    }    
+    }
+    if (iterations<numbers*10)
     console.log ("Questa volta, il numero di iterazioni necessarie per trovare " + numbers + " numeri univoci, è stato di " + iterations +"!");
+    else {
+    console.log ("Il numero di iterazioni necessarie per trovare " + numbers + " numeri univoci, è stato incredibilmente alto.. sono state necessarie  " + iterations +" iterazioni! Alla faccia del bicarbonato di sodio! :-)");
+
+    }
     return numberPool;        
 }
 
