@@ -12,6 +12,8 @@ h1 {
     font-weight: bold;
     box-shadow: 1px 1px 5px #444;
     text-shadow: 4px 4px #444;
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: #000000;
 }
 h2 {
     font-size: 33px;
@@ -20,8 +22,8 @@ h2 {
     color: #fff;
     text-transform: uppercase;
     text-shadow: -1px 3px 10px #3494d2;
-    -webkit-text-stroke-width: 0.2px;
-    -webkit-text-stroke-color: #0b3958;
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: #001a2b;
 }
 h3, h4 {
     color: #5e3700;
@@ -44,7 +46,9 @@ aside {
     width: 300px;
     height: calc(100vh - 100px);
     padding: 20px 20px;
-    background-color: #0cd977;
+    /* background-color: #0cd977; */
+    /* background: linear-gradient(45deg,#3494d2, #0cd977); */
+    background: linear-gradient(-180deg, #00C9FF 0%, #92FE9D 100%);
     overflow-y: hidden;
     z-index: 1;
 }
@@ -59,7 +63,9 @@ aside {
     display: flex;
     align-items: center;
 }
-.number-list li p {    
+.number-list li p {
+    display: inline-block;
+    width: calc(100% - 70px);    
     margin-left: 10px;
     padding: 2px 5px;
     border: 3px solid #fff;
@@ -82,7 +88,10 @@ aside {
     text-align: center;
     height: 100%;
     overflow-y: auto;
-    background-color: #3494d2;
+    background: linear-gradient(-180deg, #00C9FF 0%, #3494d2 100%);
+
+    
+    /* background-color: #3494d2; */
 }
 .overlay-layer {
     opacity: 0;    
@@ -160,7 +169,8 @@ aside {
 }
 .button-footer {
     height: 100px;
-    background-color: #f18b00;
+    /* background-color: #f18b00; */
+    background: linear-gradient(90deg, #f18b00 0%, #ffa425 100%);
     text-align: center;
     line-height: 100px;
 }
