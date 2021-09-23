@@ -8,7 +8,7 @@ var contatore = 0;
 // definisco evento alla pressione del bottoner inizia la partita (reset) 
 bottoneReset.addEventListener("click",    
 function(){
-    arrayNumeri = numberExtraction(numbers); // estraggo 90 numeri univoci tramite la funzione che ho creato
+    arrayNumeri = numberExtraction(numbers, 1, numbers); // estraggo 90 numeri univoci tramite la funzione che ho creato
     console.log("Ecco i " + numbers + " numeri generati dalla funzione invocata : " + arrayNumeri);
         
     speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: estrai numero!");
@@ -39,7 +39,7 @@ function(){
         
         // genero una lista degli ultimi numeri estratti e inietto nell'html
         var lastNumbers = document.getElementById("last-numbers");
-        lastNumbers.innerHTML+="<li>" + arrayNumeri[contatore]+ "</li>" + "<p>" + (contatore+1) + "° estratto </p>";
+        lastNumbers.innerHTML+="<li> <div class='numberlistitem'>" + arrayNumeri[contatore]+ "</div> <p>" + (contatore+1) + "° estratto </p> </li>";
         
         // mostro l'overlay sullo schermo 
         var overlayNumber = document.getElementById("overlay-number");

@@ -7,7 +7,7 @@ html {
     font-family: 'Lato', sans-serif;
 }
 h1 {
-    font-size: 50px;
+    font-size: 40px;
     color: #fff;
     font-weight: bold;
     box-shadow: 1px 1px 5px #444;
@@ -17,9 +17,11 @@ h2 {
     font-size: 33px;
     margin-bottom: 10px;
     font-weight: bold;
-    color: #5e3700;
+    color: #fff;
     text-transform: uppercase;
-    text-shadow: -1px 3px 2px #f18b00;
+    text-shadow: -1px 3px 10px #3494d2;
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: #0b3958;
 }
 h3, h4 {
     color: #5e3700;
@@ -30,29 +32,39 @@ h3, h4 {
 
 /* MIX  */
 .page-wrapper {
-    height: 100vh;   
+    height: 100vh;      
 }
 main {
     display: flex;
-    height: calc(100% - 100px);    
+    height: calc(100% - 100px);
+    position: relative;
+
 }
 aside {
     width: 300px;
     height: calc(100vh - 100px);
     padding: 20px 20px;
-    background-color: #18F256;
+    background-color: #0cd977;
     overflow-y: auto;
 }
 .number-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;        
+    flex-direction: column;    
     list-style: none;
     font-size: 25px;
-    color: white;    
-
+    color: white;
 }
 .number-list li {
+    display: flex;
+    align-items: center;
+}
+.number-list li p {    
+    margin-left: 10px;
+    padding: 2px 5px;
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+.numberlistitem {
     display: inline-block;
     text-align: center;
     line-height: 45px;
@@ -63,7 +75,6 @@ aside {
     border: 2px solid #5e3700;
     margin: 1px 2px;
     box-shadow: 1px 1px 4px #444;
-
 }
 .main-content {
     width: calc(100% - 300px);
@@ -73,33 +84,31 @@ aside {
     background-color: #3494d2;
 }
 .overlay-layer {
-    opacity: 0;
-    display: none;
-    position: fixed;
+    opacity: 0;    
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: calc(100vh - 100px);
     line-height: calc(100vh - 100px);    
     z-index: 1;
-    transition: opacity 7s;    
+    transition: opacity 1s;    
     background-color: #f18b00;
     padding-top: 20px;    
 }
-.show {
-    display: block;
+.show {    
     opacity: 1;    
 }
 .big-number {
     display: inline-block;
-    font-size: 570px;
-    width: 820px;
-    height: 820px;
+    font-size: 45vh;
+    width: 70vh;
+    height: 70vh;
     color: #f18b00;
     text-shadow: 6px 6px #5e3700;
     border: 35px solid #5e3700;
     border-radius: 100%;
-    line-height: 720px;
+    line-height: 58vh;
     background-color: white;
     box-shadow: 5px 5px 100px rgb(68, 68, 68);
            
@@ -172,7 +181,7 @@ aside {
     color: #fff;
 }
 .button-footer {
-    z-index: 1;
+    z-index: 2;
 }
 .button-footer i {
     margin-right: 10px;
