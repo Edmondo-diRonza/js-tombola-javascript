@@ -1,32 +1,30 @@
 console.clear();
 var numbers = 90; 
-var arrayNumeri = new Array(numbers);
-var scegliNumero = document.getElementById("choose-number");
-var bottoneReset = document.getElementById("reset");
+var arrayNumeri = [];
+var scegliNumero = $("#choose-number");
+var bottoneReset = $("#reset");
 var contatore = 0;
 
 // definisco evento alla pressione del bottoner inizia la partita (reset) 
-bottoneReset.addEventListener("click",    
-function(){
+bottoneReset.click( function(){
     arrayNumeri = numberExtraction(numbers, 1, numbers); // estraggo 90 numeri univoci tramite la funzione che ho creato
     console.log("Ecco i " + numbers + " numeri generati dalla funzione invocata : " + arrayNumeri);
         
     speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: estrai numero!");
     
     // rimuovo la classe choosen red che cambia colore ai numeri estratti
-        for (var i = 0; i<numbers; i++) {
-        var choosenNumber = document.getElementById(arrayNumeri[i]);
-        choosenNumber.classList.remove("choosen-red");
+    for (var i = 0; i<numbers; i++) {
+    var choosenNumber = document.getElementById(arrayNumeri[i]);
+    choosenNumber.classList.remove("choosen-red");
     }
     // cancello lista degli ultimi numeri estratti 
     var lastNumbers = document.getElementById("last-numbers");
-        lastNumbers.innerHTML = "";
-        contatore=0;    
+    lastNumbers.innerHTML = "";
+    contatore=0;    
 }
 );
 // definisco eventi alla pressione del bottone, chiamo numero 
-scegliNumero.addEventListener("click",
-function(){    
+scegliNumero.click( function(){    
     
     // controllo se non è stato inizializzato l'array
     if (arrayNumeri[0] === undefined) {
@@ -41,20 +39,20 @@ function(){
         var lastNumbers = document.getElementById("last-numbers");
         lastNumbers.innerHTML+="<li> <div class='numberlistitem'>" + arrayNumeri[contatore]+ "</div> <p>" + (contatore+1) + "° estratto </p> </li>";
         
-        // mostro l'overlay sullo schermo 
-        var overlayNumber = document.getElementById("overlay-number");
-        overlayNumber.innerHTML = arrayNumeri[contatore];        
-        var overlayClass=document.getElementById("overlay-class");               
-        overlayClass.classList.add("show");
+        // creo una funzione che accetta un tempo tot in ms e mostra l'overlay sullo schermo con una 
+        // dissolvenza in entrata ed in uscita ed un ritardo
         
-        // imposto una attesa dopo aver visualizzato il numero grande 
-        setTimeout(function(){ 
-            overlayClass.classList.remove("show"); 
-        }, 6000);
+        function showNumber (ms) {
+            var timeInOut = ms*(0.18);            
+            var delayTime = ms - (timeInOut*2);                        
+            $("#overlay-number").text(arrayNumeri[contatore]); // inietto il numero estratto nell'html
+            $(".overlay-layer").fadeIn(timeInOut).delay(delayTime).fadeOut(timeInOut);
+        }
+        showNumber(6000);        
         
         // aggiungo la classe choosen-red ai numeri estratti sul tabellone 
-        var choosenNumber = document.getElementById(arrayNumeri[contatore]);
-        choosenNumber.classList.add("choosen-red");
+        var choosenNumber = $("#" + arrayNumeri[contatore]);  //modificato in jQuery      
+        choosenNumber.addClass("choosen-red");
         
         // leggo il numero estratto 
         speakNow(arrayNumeri[contatore]);        
@@ -70,24 +68,23 @@ function(){
 }
 );
 
-var estrazioneAutomatica = document.getElementById("auto-extract");
-estrazioneAutomatica.addEventListener("click",
-function() {
+var estrazioneAutomatica = $("#auto-extract");
+estrazioneAutomatica.click(
+    function() {
     alert("in fase di aggiornamento");    
 }
 );
 
-var fiveBackward = document.getElementById("five-backward");
-fiveBackward.addEventListener("click",
+var fiveBackward = $("#five-backward");
+fiveBackward.click(
 function() {
-    var testoCompleto = backwardString(5);
+    var testoCompleto = backwardString(5); // definita nel file functions.js
     speakNow(testoCompleto);        
 }
 );
-var tenBackward = document.getElementById("ten-backward");
-tenBackward.addEventListener("click",
-function() {
-    var testoCompleto = backwardString(10);
+var tenBackward = $("#ten-backward");
+tenBackward.click(function() {
+    var testoCompleto = backwardString(10); // definita nel file functions.js
     speakNow(testoCompleto);        
 }
 );

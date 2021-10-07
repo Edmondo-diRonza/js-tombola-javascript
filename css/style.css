@@ -88,27 +88,20 @@ aside {
     text-align: center;
     height: 100%;
     overflow-y: auto;
-    background: linear-gradient(-180deg, #00C9FF 0%, #3494d2 100%);
-
-    
+    background: linear-gradient(-180deg, #00C9FF 0%, #3494d2 100%);    
     /* background-color: #3494d2; */
 }
 .overlay-layer {
-    opacity: 0;    
+    display: none;    
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: calc(100vh - 100px);
-    line-height: calc(100vh - 100px);    
-    z-index: 1;
-    transition: opacity 1s;    
-    background-color: #f18b00;
-    padding-top: 20px;    
+    width: 100vw;    
+    height: 100vh;
+    z-index: 1;    
+    background-color: #f18b00;    
 }
-.show {    
-    opacity: 1;    
-}
+
 .big-number {
     display: inline-block;
     font-size: 45vh;
@@ -121,12 +114,14 @@ aside {
     line-height: 58vh;
     background-color: white;
     box-shadow: 5px 5px 100px rgb(68, 68, 68);
+    top: 100px;
+    /* transform: translate(-50% , -50%); */
            
 }
 .tabellone-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;    
+    justify-content: space-around;        
     height: 100%;
     width: 80%;
     margin: auto;    
@@ -156,11 +151,10 @@ aside {
     color: #0066A6;
     text-align: center;
     background-color: #fff;
-    border-radius: 100%;
-    width: 60px;
+    border-radius: 100%;    
+    width: 60px; 
     height: 60px;
-    line-height: 60px;    
-    text-align: center;
+    line-height: 60px;
     box-shadow: 1px 2px 10px rgb(53, 24, 0);
 }
 .choosen-red {
@@ -191,7 +185,7 @@ aside {
     background-color: #3494d2;
     color: #fff;
 }
-.button-footer {
+.button-footer {    
     z-index: 2;
 }
 .button-footer i {
