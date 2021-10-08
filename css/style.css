@@ -118,6 +118,20 @@ aside {
     /* transform: translate(-50% , -50%); */
            
 }
+#overlay-text {
+    font-size: 70px;
+    color: #5e3700;
+    margin-top: 40px;    
+}
+.autoplay-status {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    top: 28px;
+    right: 200px;
+    color: #5e3700;
+    font-weight: bold;
+}
 .tabellone-container {
     display: flex;
     flex-direction: column;

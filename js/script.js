@@ -4,27 +4,26 @@ var arrayNumeri = [];
 var scegliNumero = $("#choose-number");
 var bottoneReset = $("#reset");
 var contatore = 0;
+var idSetInterval;
 
 // definisco evento alla pressione del bottoner inizia la partita (reset) 
 bottoneReset.click( function(){
     arrayNumeri = numberExtraction(numbers, 1, numbers); // estraggo 90 numeri univoci tramite la funzione che ho creato
     console.log("Ecco i " + numbers + " numeri generati dalla funzione invocata : " + arrayNumeri);
         
-    speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: estrai numero!");
+    speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: numero! Oppure puoi estrarre automaticamente cliccando su autoplay!");
     
-    // rimuovo la classe choosen red che cambia colore ai numeri estratti
-    for (var i = 0; i<numbers; i++) {
-    var choosenNumber = document.getElementById(arrayNumeri[i]);
-    choosenNumber.classList.remove("choosen-red");
-    }
+    // rimuovo la classe choosen-red che cambia colore ai numeri estratti
+    $(".number-item").removeClass("choosen-red");
+
     // cancello lista degli ultimi numeri estratti 
-    var lastNumbers = document.getElementById("last-numbers");
-    lastNumbers.innerHTML = "";
+    $("#last-numbers").text("");
+    
     contatore=0;    
 }
 );
-// definisco eventi alla pressione del bottone, chiamo numero 
-scegliNumero.click( function(){    
+
+function chiamaNumero(){    
     
     // controllo se non è stato inizializzato l'array
     if (arrayNumeri[0] === undefined) {
@@ -46,7 +45,9 @@ scegliNumero.click( function(){
             var timeInOut = ms*(0.18);            
             var delayTime = ms - (timeInOut*2);                        
             $("#overlay-number").text(arrayNumeri[contatore]); // inietto il numero estratto nell'html
+            $("#overlay-text").text((contatore+1) + "° estratto");
             $(".overlay-layer").fadeIn(timeInOut).delay(delayTime).fadeOut(timeInOut);
+                        
         }
         showNumber(6000);        
         
@@ -66,13 +67,40 @@ scegliNumero.click( function(){
         speakNow("Partita precedente già terminata! Hai estratto 90 numeri.");
     }
 }
-);
+// definisco eventi alla pressione del bottone, chiamo numero 
+scegliNumero.click(
+    function(){
+        chiamaNumero();
+    }
+);   
 
 var estrazioneAutomatica = $("#auto-extract");
 estrazioneAutomatica.click(
-    function() {
-    alert("in fase di aggiornamento");    
-}
+    function () {
+        speakNow("Estrazione automatica attiva")
+        $(".autoplay-status").show();
+        chiamaNumero();
+        idSetInterval = setInterval(chiamaNumero, 7000);
+        console.log("Autoplay avviato con id intervallo: " + idSetInterval + ". Per interrompere clicca su stop oppure sul numero in overlay!");
+    }
+);
+
+//Arresto estrazione automatica con tasto o cliccando sull'overlay
+$("#stop-extract").click(
+    function(){
+        speakNow("Estrazione automatica disattivata")
+        $(".autoplay-status").hide();
+        clearInterval(idSetInterval)
+        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play")
+    }
+);
+$(".overlay-layer").click(
+    function(){
+        speakNow("Estrazione automatica disattivata")
+        $(".autoplay-status").hide();
+        clearInterval(idSetInterval)
+        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play")
+    }
 );
 
 var fiveBackward = $("#five-backward");
@@ -82,6 +110,7 @@ function() {
     speakNow(testoCompleto);        
 }
 );
+
 var tenBackward = $("#ten-backward");
 tenBackward.click(function() {
     var testoCompleto = backwardString(10); // definita nel file functions.js
