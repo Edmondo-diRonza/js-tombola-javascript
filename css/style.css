@@ -171,6 +171,10 @@ aside {
     line-height: 60px;
     box-shadow: 1px 2px 10px rgb(53, 24, 0);
 }
+.number-item:hover {
+    background-color: red;
+    color: #fff;
+}
 .choosen-red {
     background-color: #f18b00;
     color: white;

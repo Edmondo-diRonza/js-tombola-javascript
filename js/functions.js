@@ -56,3 +56,30 @@ var testoCompleto ="Ecco i " + n + " numeri precedenti: ";
     console.log (testoCompleto);
     return testoCompleto;
 }
+
+// FUNZIONE CHE IDENTIFICA IL NUMERO CLICCATO E LEGGE IL NUMERO DI ESTRAZIONE
+function identificaNumero() {
+    $(".number-item").click( function(){        
+        var numeroCliccato = parseInt($(this).attr("id"));
+        var indiceArray = arrayNumeri.indexOf(numeroCliccato);
+        if (indiceArray<contatore && indiceArray!=-1) {
+            speakNow("Il " + numeroCliccato + " è stato estratto nell'estrazione numero " + (indiceArray + 1));
+        } else {
+            speakNow("Il " + numeroCliccato + " non è stato ancora estratto");
+        } 
+    })
+}
+
+function controlloVincite() {
+    if (!ambo && !terno && !quaterna && !cinquina && !tombola) {
+        controlloAmbo();
+    } else if (!terno && !quaterna && !cinquina && !tombola) {
+        controlloTerno();
+    } else if (!quaterna && !cinquina && !tombola) {
+        controlloQuaterna();
+    } else if (!cinquina && !tombola) {
+        controlloCinquina();
+    } else if (!tombola) {
+        controlloTombola();
+    } 
+}

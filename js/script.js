@@ -5,6 +5,7 @@ var scegliNumero = $("#choose-number");
 var bottoneReset = $("#reset");
 var contatore = 0;
 var idSetInterval;
+var clickedNumber;
 
 // definisco evento alla pressione del bottoner inizia la partita (reset) 
 bottoneReset.click( function(){
@@ -19,7 +20,9 @@ bottoneReset.click( function(){
     // cancello lista degli ultimi numeri estratti 
     $("#last-numbers").text("");
     
-    contatore=0;    
+    contatore=0;
+    identificaNumero(); // quando clicco su un numero mi dice quando è stato estratto
+    console.log(inizializzaCartelle()); // inizializzo le cartelle   
 }
 );
 
@@ -66,11 +69,14 @@ function chiamaNumero(){
     else { 
         speakNow("Partita precedente già terminata! Hai estratto 90 numeri.");
     }
+    eliminaEstratto(arrayNumeri[contatore-1]);
+    controlloVincite();    
 }
+
 // definisco eventi alla pressione del bottone, chiamo numero 
 scegliNumero.click(
     function(){
-        chiamaNumero();
+        chiamaNumero();       
     }
 );   
 
