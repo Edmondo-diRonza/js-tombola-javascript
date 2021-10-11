@@ -17,19 +17,21 @@
             <main>
                 <aside>
                     <h2>Tombola 2022</h2>
-                    <h3>Esperimenti in Javascript</h3>
+                    <div class="autoplay-status">
+                        Estrazione automatica attiva!
+                    </div>
                     <h4>Ultimi numeri estratti:</h4>
                     <ul class="number-list" id="last-numbers">                        
                     </ul>
                 </aside>
                 <section class="main-content">
-                    <div class="overlay-layer" id="overlay-class">
-                        <div class="big-number" id="overlay-number"></div>
-                        <div id="overlay-text"></div>
-                    </div>
-                    <div class="autoplay-status">
-                        MODALITA' ESTRAZIONE AUTOMATICA ATTIVA
-                    </div>
+                    <div class="overlay-layer" id="number-show">
+                        <div class="winner-layer">ciao</div>
+                        <div class="overlay-wrapper">                            
+                            <div class="big-number" id="overlay-number"></div>
+                            <div id="overlay-text"></div>
+                        </div>                        
+                    </div>                    
                     <div class="tabellone-container">
                         <h1>TABELLONE</h1>
                         <div class="row_cartella">

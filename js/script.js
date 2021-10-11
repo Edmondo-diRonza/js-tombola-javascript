@@ -10,7 +10,7 @@ var clickedNumber;
 // definisco evento alla pressione del bottoner inizia la partita (reset) 
 bottoneReset.click( function(){
     arrayNumeri = numberExtraction(numbers, 1, numbers); // estraggo 90 numeri univoci tramite la funzione che ho creato
-    console.log("Ecco i " + numbers + " numeri generati dalla funzione invocata : " + arrayNumeri);
+    // console.log("Ecco i " + numbers + " numeri generati dalla funzione invocata : " + arrayNumeri); non mostro i numeri in console, per mostrarli basta decommentare
         
     speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: numero! Oppure puoi estrarre automaticamente cliccando su autoplay!");
     
@@ -35,7 +35,7 @@ function chiamaNumero(){
     };    
     // controllo di non essere all'ultimo numero oppure con array non inizializzato
     if (contatore<=89 && arrayNumeri[0]!=undefined){             
-        console.log("Il " + (contatore+1) + " numero estratto è " + arrayNumeri[contatore]);
+        console.log("Il " + (contatore+1) + "° numero estratto è " + arrayNumeri[contatore]);
         
         // genero una lista degli ultimi numeri estratti e inietto nell'html
         var lastNumbers = document.getElementById("last-numbers");
@@ -49,8 +49,7 @@ function chiamaNumero(){
             var delayTime = ms - (timeInOut*2);                        
             $("#overlay-number").text(arrayNumeri[contatore]); // inietto il numero estratto nell'html
             $("#overlay-text").text((contatore+1) + "° estratto");
-            $(".overlay-layer").fadeIn(timeInOut).delay(delayTime).fadeOut(timeInOut);
-                        
+            $(".overlay-layer").fadeIn(timeInOut).delay(delayTime).fadeOut(timeInOut);                       
         }
         showNumber(6000);        
         
@@ -83,7 +82,7 @@ scegliNumero.click(
 var estrazioneAutomatica = $("#auto-extract");
 estrazioneAutomatica.click(
     function () {
-        speakNow("Estrazione automatica attiva")
+        speakNow("Estrazione automatica attiva");
         $(".autoplay-status").show();
         chiamaNumero();
         idSetInterval = setInterval(chiamaNumero, 7000);
@@ -94,18 +93,18 @@ estrazioneAutomatica.click(
 //Arresto estrazione automatica con tasto o cliccando sull'overlay
 $("#stop-extract").click(
     function(){
-        speakNow("Estrazione automatica disattivata")
+        speakNow("Estrazione automatica disattivata");
         $(".autoplay-status").hide();
-        clearInterval(idSetInterval)
-        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play")
+        clearInterval(idSetInterval);
+        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play");
     }
 );
 $(".overlay-layer").click(
     function(){
-        speakNow("Estrazione automatica disattivata")
+        speakNow("Estrazione automatica disattivata");
         $(".autoplay-status").hide();
-        clearInterval(idSetInterval)
-        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play")
+        clearInterval(idSetInterval);
+        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play");
     }
 );
 

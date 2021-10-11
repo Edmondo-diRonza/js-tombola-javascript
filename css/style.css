@@ -43,6 +43,8 @@ main {
 
 }
 aside {
+    display: flex;
+    flex-direction: column;
     width: 300px;
     height: calc(100vh - 100px);
     padding: 20px 20px;
@@ -51,6 +53,15 @@ aside {
     background: linear-gradient(-180deg, #00C9FF 0%, #92FE9D 100%);
     overflow-y: hidden;
     z-index: 1;
+}
+.autoplay-status {
+    display: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #de0101;
+    margin-bottom: 10px;
+    font-weight: bold;
+
 }
 .number-list {
     display: flex;
@@ -101,6 +112,15 @@ aside {
     z-index: 1;    
     background-color: #f18b00;    
 }
+.overlay-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
 
 .big-number {
     display: inline-block;
@@ -114,8 +134,7 @@ aside {
     line-height: 58vh;
     background-color: white;
     box-shadow: 5px 5px 100px rgb(68, 68, 68);
-    top: 100px;
-    /* transform: translate(-50% , -50%); */
+    top: 100px;    
            
 }
 #overlay-text {
@@ -123,15 +142,21 @@ aside {
     color: #5e3700;
     margin-top: 40px;    
 }
-.autoplay-status {
+.winner-layer {
     display: none;
-    position: fixed;
-    z-index: 5;
-    top: 28px;
-    right: 200px;
-    color: #5e3700;
-    font-weight: bold;
+    background-color: #1BA29B;
+    color: #fff;
+    font-weight: 900;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    font-size: 200px;
+    line-height: 100vh;
+    text-shadow: 8px 8px 10px black;
+    text-transform: uppercase;
 }
+
+
 .tabellone-container {
     display: flex;
     flex-direction: column;
@@ -143,21 +168,27 @@ aside {
 .row {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 7px;    
+    padding: 10px;    
 }
 .row_cartella {
     display: flex;    
-    justify-content: space-around;    
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;       
 }
 .cartella {
     display: flex;
     flex-direction: column;
-    border: 4px solid #fff;
+    border: 1px solid #fff;
     padding: 8px 0px;
     border-radius: 40px;
-    width: 35%;
-    margin-bottom: 2px;
+    width: calc(80%/2);
+    margin-bottom: 0.3%;
+    margin-right: 5%;
     box-shadow: 5px 5px 10px #444;
+    background: linear-gradient(-180deg, #ffe600 0%, #ffc400 100%);
+    min-width: 450px;
+    
 }
 .number-item {
     font-size: 32px;
@@ -166,10 +197,12 @@ aside {
     text-align: center;
     background-color: #fff;
     border-radius: 100%;    
-    width: 60px; 
+    width: calc(100%/5);
+    max-width: 100px; 
     height: 60px;
     line-height: 60px;
     box-shadow: 1px 2px 10px rgb(53, 24, 0);
+    margin-right: 10px;
 }
 .number-item:hover {
     background-color: red;
@@ -211,4 +244,15 @@ aside {
     font-size: 30px;
     vertical-align: middle;
     /* color: #f18b00; */
+}
+
+/* RESPONSIVE  */
+@media screen and (max-width: 992px) {
+    .row_cartella {
+        flex-direction: column;
+    }
+    .cartella {
+        width: 100%;
+        margin-top: 20px;
+    }    
 }

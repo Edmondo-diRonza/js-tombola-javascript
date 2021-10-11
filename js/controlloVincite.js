@@ -130,6 +130,20 @@ function eliminaEstratto(estratto){
 
 }
 
+function winningShow(wintype) {
+    clearInterval(idSetInterval); //blocco estrazione automatica
+    $(".overlay-layer").fadeIn().delay(8000).fadeOut();
+    $(".winner-layer").text(wintype)
+    $(".winner-layer").fadeIn(1000).delay(6000).fadeOut(1000);
+    speakNow("Il tabellone ha fatto " + wintype);        
+    if (wintype != "TOMBOLA!") {
+        idSetInterval = setInterval(chiamaNumero, 7000); // riprendo estrazione automatica
+    } else {
+        speakNow("PARTITA TERMINATA!");
+    }
+
+}
+
 function controlloAmbo() {    
     if (cartella1[0].length == 3 || cartella1[1].length == 3 || cartella1[2].length == 3 || 
     cartella2[0].length == 3 || cartella2[1].length == 3 || cartella2[2].length == 3 || 
@@ -138,7 +152,7 @@ function controlloAmbo() {
     cartella5[0].length == 3 || cartella5[1].length == 3 || cartella5[2].length == 3 || 
     cartella6[0].length == 3 || cartella6[1].length == 3 || cartella6[2].length == 3) {
         ambo = true;
-        console.log("Ambo: "+ ambo);
+        winningShow("AMBO!");        
     }    
 }
 
@@ -150,7 +164,7 @@ function controlloTerno() {
         cartella5[0].length == 2 || cartella5[1].length == 2 || cartella5[2].length == 2 || 
         cartella6[0].length == 2 || cartella6[1].length == 2 || cartella6[2].length == 2) {
         terno = true;
-        console.log("Terno: "+ terno);
+        winningShow("TERNO!");
     }    
 }
 
@@ -162,7 +176,7 @@ function controlloQuaterna() {
         cartella5[0].length == 1 || cartella5[1].length == 1 || cartella5[2].length == 1 || 
         cartella6[0].length == 1 || cartella6[1].length == 1 || cartella6[2].length == 1) {
         quaterna = true;
-        console.log("Quaterna: "+ quaterna);
+        winningShow("QUATERNA!");
     }    
 }
 
@@ -174,7 +188,7 @@ function controlloCinquina() {
         cartella5[0].length == 0 || cartella5[1].length == 0 || cartella5[2].length == 0 || 
         cartella6[0].length == 0 || cartella6[1].length == 0 || cartella6[2].length == 0) {
         cinquina = true;
-        console.log("Cinquina: "+ cinquina);
+        winningShow("CINQUINA!");
     }    
 }
 function controlloTombola() {
@@ -185,7 +199,7 @@ function controlloTombola() {
         cartella5[0].length == 0 && cartella5[1].length == 0 && cartella5[2].length == 0 || 
         cartella6[0].length == 0 && cartella6[1].length == 0 && cartella6[2].length == 0) {
         tombola = true;
-        console.log("Tombola: "+ tombola);
+        winningShow("TOMBOLA!");
     }    
 }
 
