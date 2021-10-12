@@ -12,6 +12,7 @@ h1 {
     font-weight: bold;
     box-shadow: 1px 1px 5px #444;
     text-shadow: 4px 4px #444;
+    margin: 15px 0px;
     -webkit-text-stroke-width: 0.4px;
     -webkit-text-stroke-color: #000000;
 }
@@ -160,7 +161,7 @@ aside {
 .tabellone-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;        
+    justify-content: space-between;        
     height: 100%;
     width: 80%;
     margin: auto;    
@@ -247,12 +248,62 @@ aside {
 }
 
 /* RESPONSIVE  */
+@media screen and (max-width: 1200px) {
+    .cartella {
+        margin: 3%;
+    }
+    .btn {
+        padding: 5px 8px;
+        margin-left: 5px ;
+        /* font-size: 16px; */
+    }
+    .fas , .far 
+     {
+        display: none;
+    }
+    #ten-backward {
+        display: none;
+    }
+
+}
 @media screen and (max-width: 992px) {
     .row_cartella {
         flex-direction: column;
     }
     .cartella {
         width: 100%;
-        margin-top: 20px;
-    }    
+        margin-bottom: 20px;
+    }
+    aside {
+        display: none;
+    }
+    .main-content {
+        width: 100%;
+    }
+    #five-backward {
+        display: none;
+    }
+    #ten-backward {
+        display: none;
+    }
+    .btn {
+        padding: 5px 8px;
+        margin-left: 5px ;
+        /* font-size: 16px; */
+    }
+    .fas , .far 
+     {
+        display: none;
+    }
+    .tabellone-container h1 {
+        display: none;
+    }
+    .big-number{
+        border: 15px solid #5e3700;
+        width: 400px;
+        height: 400px;
+        font-size: 300px;
+        line-height: 400px;
+    }
+
 }
