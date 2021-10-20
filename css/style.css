@@ -12,7 +12,7 @@ h1 {
     font-weight: bold;
     box-shadow: 1px 1px 5px #444;
     text-shadow: 4px 4px #444;
-    margin: 15px 0px;
+    margin: 8px 0px;
     -webkit-text-stroke-width: 0.4px;
     -webkit-text-stroke-color: #000000;
 }
@@ -34,20 +34,27 @@ h3, h4 {
 }
 
 /* MIX  */
+.rotation-alert {
+    display: none;
+    background: linear-gradient(-180deg, #00C9FF 0%, #3494d2 100%);    
+}
+.text-container p {
+    font-size: 40px;
+    color: #fff;
+    font-weight: 900;   
+}
 .page-wrapper {
     height: 100vh;      
 }
 main {
     display: flex;
     height: calc(100% - 100px);
-    position: relative;
-
 }
 aside {
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: calc(100vh - 100px);
+    height: 100%;
     padding: 20px 20px;
     /* background-color: #0cd977; */
     /* background: linear-gradient(45deg,#3494d2, #0cd977); */
@@ -101,11 +108,12 @@ aside {
     height: 100%;
     overflow-y: auto;
     background: linear-gradient(-180deg, #00C9FF 0%, #3494d2 100%);    
+    padding-bottom: 10px;
     /* background-color: #3494d2; */
 }
 .overlay-layer {
     display: none;    
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;    
@@ -116,7 +124,7 @@ aside {
 .overlay-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -145,6 +153,7 @@ aside {
 }
 .winner-layer {
     display: none;
+    position: fixed;
     background-color: #1BA29B;
     color: #fff;
     font-weight: 900;
@@ -188,7 +197,7 @@ aside {
     margin-right: 5%;
     box-shadow: 5px 5px 10px #444;
     background: linear-gradient(-180deg, #ffe600 0%, #ffc400 100%);
-    min-width: 450px;
+    min-width: 310px;
     
 }
 .number-item {
@@ -251,6 +260,7 @@ aside {
 @media screen and (max-width: 1200px) {
     .cartella {
         margin: 3%;
+        min-width: 250px;
     }
     .btn {
         padding: 5px 8px;
@@ -267,9 +277,9 @@ aside {
 
 }
 @media screen and (max-width: 992px) {
-    .row_cartella {
+    /* .row_cartella {
         flex-direction: column;
-    }
+    } */
     .cartella {
         width: 100%;
         margin-bottom: 20px;
@@ -296,14 +306,69 @@ aside {
         display: none;
     }
     .tabellone-container h1 {
-        display: none;
+        font-size: 28px;
     }
     .big-number{
         border: 15px solid #5e3700;
-        width: 400px;
-        height: 400px;
-        font-size: 300px;
-        line-height: 400px;
+        width: 250px;
+        height: 250px;
+        font-size: 160px;
+        line-height: 220px;
     }
 
+}
+
+@media screen and (max-width: 992px) and (orientation : landscape) {
+.page-wrapper { 
+    display: none;
+}
+.rotation-alert {
+    display: flex;    
+    height: 100vh;
+    justify-content: center;
+    align-items: center;  
+}
+}
+
+
+@media screen and (max-width: 576px) and (orientation : portrait){
+    aside {
+        display: none;
+    }
+    .cartella {
+        min-width: 250px; 
+        margin-bottom: 1%;
+        border-radius: 25px;       
+    }
+    .number-item {
+        font-size: 24px;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        margin-right: 2px;
+    }
+    .row {
+        padding: 1px;
+    }   
+    .btn {
+        padding: 5px 4px;
+        margin-left: 5px ;
+        max-width: 100px;        
+    }    
+    .big-number {
+        width: 300px;
+        height: 300px;
+        font-size: 200px;
+        line-height: 270px;
+    }
+    .winner-layer {
+        font-size: 70px;
+    }
+    .button-footer {
+        height: 70px;
+        line-height: 70px;
+    }
+    main{
+        height: calc(100% - 70px);
+    }    
 }

@@ -6,23 +6,24 @@ var bottoneReset = $("#reset");
 var contatore = 0;
 var idSetInterval;
 var clickedNumber;
+var winarray = []; // array che memorizza il numero di estrazione della vincita
 
-// definisco evento alla pressione del bottoner inizia la partita (reset) 
+// Alla pressione del bottone inizia la partita (reset globale di tutte le variabili) 
 bottoneReset.click( function(){
     arrayNumeri = numberExtraction(numbers, 1, numbers); // estraggo 90 numeri univoci tramite la funzione che ho creato
     // console.log("Ecco i " + numbers + " numeri generati dalla funzione invocata : " + arrayNumeri); non mostro i numeri in console, per mostrarli basta decommentare
         
-    speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: numero! Oppure puoi estrarre automaticamente cliccando su autoplay!");
+    speakNow("Si inizia a giocare! Per estrarre il numero successivo clicca su: chiama! Oppure puoi estrarre automaticamente cliccando su auto!");
     
-    // rimuovo la classe choosen-red che cambia colore ai numeri estratti
+    // rimuovo la classe choosen-red anche se ormai è "orange" :) che cambia colore ai numeri estratti per inizializzare il tabellone
     $(".number-item").removeClass("choosen-red");
 
-    // cancello lista degli ultimi numeri estratti 
+    // cancello lista degli ultimi numeri estratti da iniettare su aside
     $("#last-numbers").text("");
     
-    contatore=0;
+    contatore=0; //contatore inizializzato a 0
     identificaNumero(); // quando clicco su un numero mi dice quando è stato estratto
-    console.log(inizializzaCartelle()); // inizializzo le cartelle   
+    console.log(inizializzaCartelle()); // inizializzo le cartelle e stampo su console il risultato  
 }
 );
 
@@ -31,7 +32,7 @@ function chiamaNumero(){
     // controllo se non è stato inizializzato l'array
     if (arrayNumeri[0] === undefined) {
         console.log("Devi ancora inizia la partita!");
-        speakNow("Per favore, clicca prima sul pulsante iniziamo! ");        
+        speakNow("Per favore, clicca prima sul pulsante gioca! ");        
     };    
     // controllo di non essere all'ultimo numero oppure con array non inizializzato
     if (contatore<=89 && arrayNumeri[0]!=undefined){             
@@ -51,7 +52,7 @@ function chiamaNumero(){
             $("#overlay-text").text((contatore+1) + "° estratto");
             $(".overlay-layer").fadeIn(timeInOut).delay(delayTime).fadeOut(timeInOut);                       
         }
-        showNumber(6000);        
+        showNumber(6000); // chiamo la funzione appena definita        
         
         // aggiungo la classe choosen-red ai numeri estratti sul tabellone 
         var choosenNumber = $("#" + arrayNumeri[contatore]);  //modificato in jQuery      
@@ -68,8 +69,8 @@ function chiamaNumero(){
     else { 
         speakNow("Partita precedente già terminata! Hai estratto 90 numeri.");
     }
-    eliminaEstratto(arrayNumeri[contatore-1]);
-    controlloVincite();    
+    eliminaEstratto(arrayNumeri[contatore-1]); // rimuovo il numero estratto dall'array bidimensionale
+    controlloVincite(); //controllo se ho generato vincite con l'ultima estrazione   
 }
 
 // definisco eventi alla pressione del bottone, chiamo numero 
@@ -93,18 +94,25 @@ estrazioneAutomatica.click(
 //Arresto estrazione automatica con tasto o cliccando sull'overlay
 $("#stop-extract").click(
     function(){
-        speakNow("Estrazione automatica disattivata");
-        $(".autoplay-status").hide();
-        clearInterval(idSetInterval);
-        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play");
+        if (idSetInterval != -1 && idSetInterval!=undefined ) {
+            speakNow("Estrazione automatica disattivata");
+            $(".autoplay-status").hide();
+            clearInterval(idSetInterval);
+            idSetInterval= -1;
+            console.log("Autoplay disabilitato, per abilitare nuovamente clicca play");
+        }        
     }
 );
 $(".overlay-layer").click(
     function(){
-        speakNow("Estrazione automatica disattivata");
-        $(".autoplay-status").hide();
-        clearInterval(idSetInterval);
-        console.log("Autoplay disabilitato, per abilitare nuovamente clicca play");
+        
+        if (idSetInterval != -1 && idSetInterval!=undefined ) {
+            speakNow("Estrazione automatica disattivata");
+            $(".autoplay-status").hide();
+            clearInterval(idSetInterval);
+            idSetInterval= -1;
+            console.log("Autoplay disabilitato, per abilitare nuovamente clicca play");
+        }           
     }
 );
 

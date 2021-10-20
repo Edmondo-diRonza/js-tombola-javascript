@@ -36,8 +36,6 @@ var cinquina = false;
 var tombola = false;
 
 //funzione che inizializza le cartelle
-
-
 function inizializzaCartelle() {
     //cartella 1
     for (z=0;z<3;z++) {
@@ -130,18 +128,21 @@ function eliminaEstratto(estratto){
 
 }
 
-function winningShow(wintype) {
-    clearInterval(idSetInterval); //blocco estrazione automatica
-    $(".overlay-layer").fadeIn().delay(8000).fadeOut();
-    $(".winner-layer").text(wintype)
+function winningShow(wintype) { //questa funziona mostra in overlay la vincita    
+    if (idSetInterval != -1 && idSetInterval!=undefined) {
+        clearInterval(idSetInterval); //blocco estrazione automatica
+    }    
+    $(".big-number").hide();
+    $(".overlay-layer").show();
+    $(".winner-layer").text(wintype);
     $(".winner-layer").fadeIn(1000).delay(6000).fadeOut(1000);
+    $(".overlay-layer").hide(8000);
+    $(".big-number").show();
     speakNow("Il tabellone ha fatto " + wintype);        
-    if (wintype != "TOMBOLA!") {
+    if (wintype != "TOMBOLA!" && idSetInterval!=-1 && idSetInterval!=undefined) {
         idSetInterval = setInterval(chiamaNumero, 7000); // riprendo estrazione automatica
-    } else {
-        speakNow("PARTITA TERMINATA!");
     }
-
+    return true;
 }
 
 function controlloAmbo() {    
@@ -152,10 +153,11 @@ function controlloAmbo() {
     cartella5[0].length == 3 || cartella5[1].length == 3 || cartella5[2].length == 3 || 
     cartella6[0].length == 3 || cartella6[1].length == 3 || cartella6[2].length == 3) {
         ambo = true;
-        winningShow("AMBO!");        
+        winningShow("AMBO!");
+        console.log("Ambo effettuato nell'estrazione n. "+ contatore);
+        winarray[0]=contatore;        
     }    
 }
-
 function controlloTerno() {
     if (cartella1[0].length == 2 || cartella1[1].length == 2 || cartella1[2].length == 2 || 
         cartella2[0].length == 2 || cartella2[1].length == 2 || cartella2[2].length == 2 || 
@@ -165,9 +167,11 @@ function controlloTerno() {
         cartella6[0].length == 2 || cartella6[1].length == 2 || cartella6[2].length == 2) {
         terno = true;
         winningShow("TERNO!");
+        console.log("Terno effettuta nell'estrazione n. "+ contatore);
+        winarray[1]=contatore;        
+
     }    
 }
-
 function controlloQuaterna() {
     if (cartella1[0].length == 1 || cartella1[1].length == 1 || cartella1[2].length == 1 || 
         cartella2[0].length == 1 || cartella2[1].length == 1 || cartella2[2].length == 1 || 
@@ -177,9 +181,11 @@ function controlloQuaterna() {
         cartella6[0].length == 1 || cartella6[1].length == 1 || cartella6[2].length == 1) {
         quaterna = true;
         winningShow("QUATERNA!");
+        console.log("Quaterna effettuata nell'estrazione n. "+ contatore);
+        winarray[2]=contatore;        
+
     }    
 }
-
 function controlloCinquina() {
     if (cartella1[0].length == 0 || cartella1[1].length == 0 || cartella1[2].length == 0 || 
         cartella2[0].length == 0 || cartella2[1].length == 0 || cartella2[2].length == 0 || 
@@ -189,6 +195,9 @@ function controlloCinquina() {
         cartella6[0].length == 0 || cartella6[1].length == 0 || cartella6[2].length == 0) {
         cinquina = true;
         winningShow("CINQUINA!");
+        console.log("Cinquina effettuta nell'estrazione n. "+ contatore);
+        winarray[3]=contatore;        
+
     }    
 }
 function controlloTombola() {
@@ -200,7 +209,18 @@ function controlloTombola() {
         cartella6[0].length == 0 && cartella6[1].length == 0 && cartella6[2].length == 0) {
         tombola = true;
         winningShow("TOMBOLA!");
+        console.log("Tombola effettuata nell'estrazione n. "+ contatore);
+        winarray[4]=contatore;
+        riepilogoVincite();        
     }    
+}
+
+function riepilogoVincite() {
+    console.log("Ambo effettuato nell'estrazione n. "+ winarray[0]);
+    console.log("Terno effettuato nell'estrazione n. "+ winarray[1]);
+    console.log("Quaterna effettuata nell'estrazione n. "+ winarray[2]);
+    console.log("Cinquina effettuata nell'estrazione n. "+ winarray[3]);
+    console.log("Tombola effettuata nell'estrazione n. "+ winarray[4]);
 }
 
 

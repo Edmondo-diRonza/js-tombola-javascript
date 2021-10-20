@@ -25,7 +25,7 @@ function numberExtraction(numbers, min, max){
         iterations++;  // questo indice rappresenta le iterazioni necessarie a scrivere numeri univoci ed è >= di arrayindex         
     }
     if (iterations<numbers*10)
-    console.log ("Sono stati estratti " + numbers + " numeri univoci, con " + iterations +" iterazioni ! I numeri sono stati scelti nell'intervallo: "+min + " <= X <= " + max);
+    console.log ("Estratti " + numbers + " numeri univoci, con " + iterations +" iterazioni ! I numeri sono stati scelti nell'intervallo: "+min + " <= X <= " + max);
     else {
     console.log ("Il numero di iterazioni necessarie per trovare " + numbers + " numeri univoci, è stato incredibilmente alto.. sono state necessarie  " + iterations +" iterazioni! Alla faccia del bicarbonato di sodio! :-)");
 
@@ -70,7 +70,7 @@ function identificaNumero() {
     })
 }
 
-function controlloVincite() {
+function controlloVincite() { 
     if (!ambo && !terno && !quaterna && !cinquina && !tombola) {
         controlloAmbo();
     } else if (!terno && !quaterna && !cinquina && !tombola) {
@@ -81,5 +81,5 @@ function controlloVincite() {
         controlloCinquina();
     } else if (!tombola) {
         controlloTombola();
-    } 
+    }     
 }

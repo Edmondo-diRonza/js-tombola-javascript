@@ -13,7 +13,13 @@
         <title>Tombola JS</title>
     </head>
     <body>
-        <div class="page-wrapper">
+        <div class="rotation-alert">
+            <div class="text-container">
+                <p>RUOTA IL DISPOSITIVO!</p>                
+            </div>
+            
+        </div>
+        <div class="page-wrapper">            
             <main>
                 <aside>
                     <h2>Tombola 2022</h2>
@@ -26,7 +32,7 @@
                 </aside>
                 <section class="main-content">
                     <div class="overlay-layer" id="number-show">
-                        <div class="winner-layer">ciao</div>
+                        <div class="winner-layer">NESSUNA VINCITA</div>
                         <div class="overlay-wrapper">                            
                             <div class="big-number" id="overlay-number"></div>
                             <div id="overlay-text"></div>
@@ -186,8 +192,8 @@
             
             <footer class="button-footer">
                 <button id="reset" class="btn"><i class="fas fa-dice-d20"></i>Gioca!</button>
-                <button id="choose-number" class="btn"><i class="far fa-smile-wink"></i>Numero!</button>
-                <button id="auto-extract" class="btn"><i class="far fa-grin-stars"></i>Autoplay <i class="fas fa-play-circle"></i></button>
+                <button id="choose-number" class="btn"><i class="far fa-smile-wink"></i>Chiama!</button>
+                <button id="auto-extract" class="btn"><i class="far fa-grin-stars"></i>Auto <i class="fas fa-play-circle"></i></button>
                 <button id="stop-extract" class="btn"><i class="far fa-grin-stars"></i>Stop <i class="far fa-stop-circle"></i> </button>
                 <button id="five-backward" class="btn"><i class="fas fa-history"></i>Cinque indietro</button>
                 <button id="ten-backward" class="btn"><i class="fas fa-history"></i><i class="fas fa-history"></i>dieci indietro</button>                
